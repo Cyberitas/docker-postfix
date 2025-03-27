@@ -133,7 +133,7 @@ if [ ! -z "${TRANSPORT_DISCARD}" ]; then
 fi
 
 if [ ! -z "${IGNORE_EHLO_8BITMIME}" ]; then
-  echo "smtp_discard_ehlo_keywords = 8BITMIME" >> /etc/postfix/main.cf
+  postconf -e "smtp_discard_ehlo_keywords = 8BITMIME"
   # Older broken Microsoft Exchange advertises 8BITMIME in response to EHLO
   # Attempting to deliver will fail with error: 554 5.6.1 Body type not supported by Remote Host
   # Postfix main.cf 'smtp_discard_ehlo_keywords = 8BITMIME' instructs postfix to ignore the 8BITMIME
